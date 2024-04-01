@@ -8,9 +8,11 @@ Imports System.ComponentModel
 Imports System.Drawing
 Imports System.Windows.Forms
 
-''' <summary></summary>
-<ProvideToolboxControl("TransparentLabelControl.TransparenLabel", False)>
-<Description("")>
+''' <summary>Ein Steuerelement zum Anzeigen eines Textes mit durchscheinendem Hintergrund.</summary>
+<ProvideToolboxControl("SchlumpfSoft Controls", False)>
+<Description("Ein Steuerelement zum Anzeigen eines Textes mit durchscheinendem Hintergrund.")>
+<ToolboxItem(True)>
+<ToolboxBitmap(GetType(TransparentLabel), "TransparentLabel.bmp")>
 Public Class TransparentLabel
 
     Public Sub New()
@@ -30,8 +32,8 @@ Public Class TransparentLabel
 
     End Sub
 
+    ''' <summary>Hiermit wird die Möglichkeit der Transparenz aktiviert</summary>
     Protected Overrides ReadOnly Property CreateParams As CreateParams
-
         Get
             Dim cp As CreateParams = MyBase.CreateParams
             'WS EX TRANSPARENT aktivieren
@@ -39,85 +41,54 @@ Public Class TransparentLabel
             cp.ExStyle = cp.ExStyle Or &H20
             Return cp
         End Get
-
     End Property
 
     ''' <summary>Nicht Relevant</summary>
+    <Browsable(False)>
+    <EditorBrowsable(EditorBrowsableState.Never)>
     Public Overrides Property BackColor As Color
         Get
             Return MyBase.BackColor
         End Get
         Set(value As Color)
-            MyBase.BackColor = value
+            'MyBase.BackColor = value
         End Set
     End Property
 
     ''' <summary>Nicht Relevant</summary>
+    <Browsable(False)>
+    <EditorBrowsable(EditorBrowsableState.Never)>
     Public Overrides Property BackgroundImage As Image
         Get
             Return MyBase.BackgroundImage
         End Get
         Set(value As Image)
-            MyBase.BackgroundImage = value
+            'MyBase.BackgroundImage = value
         End Set
     End Property
 
     ''' <summary>Nicht Relevant</summary>
+    <Browsable(False)>
+    <EditorBrowsable(EditorBrowsableState.Never)>
     Public Overrides Property BackgroundImageLayout As ImageLayout
         Get
             Return MyBase.BackgroundImageLayout
         End Get
         Set(value As ImageLayout)
-            MyBase.BackgroundImageLayout = value
+            'MyBase.BackgroundImageLayout = value
         End Set
     End Property
 
-    Public Overrides Property Font As Font
+    ''' <summary>Nicht Relevant</summary>
+    <Browsable(False)>
+    <EditorBrowsable(EditorBrowsableState.Never)>
+    Public Overloads Property FlatStyle As FlatStyle
         Get
-            Return MyBase.Font
+            Return MyBase.FlatStyle
         End Get
-        Set(value As Font)
-            MyBase.Font = value
-            Me.RecreateHandle()
+        Set(value As FlatStyle)
+            MyBase.FlatStyle = value
         End Set
     End Property
-
-    Public Overrides Property ForeColor As Color
-        Get
-            Return MyBase.ForeColor
-        End Get
-        Set(value As Color)
-            MyBase.ForeColor = value
-            Me.RecreateHandle()
-        End Set
-    End Property
-
-    Public Overrides Property Text As String
-        Get
-            Return MyBase.Text
-        End Get
-        Set(value As String)
-            MyBase.Text = value
-            Me.RecreateHandle()
-        End Set
-    End Property
-
-    Protected Overrides Sub OnPaint(ByVal e As System.Windows.Forms.PaintEventArgs)
-        MyBase.OnPaint(e)
-
-        'Benutzerdefinierten Zeichnungscode hier einfügen
-        Dim g As Graphics = Me.CreateGraphics
-
-        Dim h As Single = g.MeasureString(Me.Text, Me.Font).Height
-        Dim w As Single = g.MeasureString(Me.Text, Me.Font).Width
-        Dim s As String = $"Höhe: {h}, Breite: {w}{vbCrLf}{Me.Text}"
-
-        'Me.Height = CInt(h)
-        'Me.Width = CInt(w)
-
-        g.DrawString(s, Me.Font, New SolidBrush(Me.ForeColor), Me.ClientRectangle)
-
-
-    End Sub
 
 End Class

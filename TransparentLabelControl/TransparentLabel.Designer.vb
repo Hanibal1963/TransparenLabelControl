@@ -1,6 +1,7 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class TransparentLabel
-    Inherits System.Windows.Forms.Control
+    'Inherits System.Windows.Forms.Control
+    Inherits System.Windows.Forms.Label
 
     'Das Steuerelement überschreibt den Löschvorgang zum Bereinigen der Komponentenliste.
     <System.Diagnostics.DebuggerNonUserCode()> _
